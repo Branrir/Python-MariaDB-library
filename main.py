@@ -1,10 +1,11 @@
 import MariaDBintegration
+import print
 
 class RunGUI(object):
     """main class"""
 
     def main():
-        MariaDBintegration.Return_games()
+        print.print()
 
     if __name__ == '__main__':
         main()
