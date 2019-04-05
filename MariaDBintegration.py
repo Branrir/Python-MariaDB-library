@@ -7,11 +7,13 @@ class MariaDBintegration:
 #MariaDB configuration
 
 
-db = mysql.connector.connect(user='java', password='123',database='library')
-cursor = db.cursor()
+
 
     def Return_games():
     #select from table
+        db = mysql.connector.connect(user='java', password='123',database='library')
+        cursor = db.cursor()
+
         try:
             cursor.execute("SELECT * FROM games")
         except mariadb.Error as error:

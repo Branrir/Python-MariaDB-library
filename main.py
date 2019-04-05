@@ -4,7 +4,7 @@ class RunGUI(object):
     """main class"""
 
     def main():
-        print("123")
+        MariaDBintegration.Return_games()
 
     if __name__ == '__main__':
         main()
