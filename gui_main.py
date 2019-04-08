@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget,QVBoxLayout,QLineEdit,QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QApplication, QPushButton, QWidget, QAction, QFormLayout, QGroupBox, QLabel, QTabWidget,QVBoxLayout,QLineEdit,QMessageBox
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 from MariaDBintegration import *
@@ -39,32 +39,39 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.tab2, "Delete Game")
 
         #Create 1 Tab
-        self.tab1.layout = QVBoxLayout(self)
+        self.tab1.layout = QGridLayout(self)
         self.insertButton = QPushButton("Insert")
         self.nameField_game = QLineEdit(self)
+        self.namelabel_game = QLabel("Name:")
         self.jahrField_game = QLineEdit(self)
+        self.jahrlabel_game = QLabel("Jahr:")
         self.gerneField_game = QLineEdit(self)
+        self.gernelabel_game = QLabel("Gerne:")
         self.consoleField_game = QLineEdit(self)
-        self.tab1.layout.addWidget(self.nameField_game)
-        self.tab1.layout.addWidget(self.jahrField_game)
-        self.tab1.layout.addWidget(self.gerneField_game)
-        self.tab1.layout.addWidget(self.consoleField_game)
-        self.tab1.layout.addWidget(self.insertButton)
-        self.tab1.layout.addWidget(self.nameField_game)
-        self.tab1.layout.addWidget(self.jahrField_game)
-        self.tab1.layout.addWidget(self.gerneField_game)
-        self.tab1.layout.addWidget(self.consoleField_game)
-        self.tab1.layout.addWidget(self.insertButton)
+        self.consolelabel_game = QLabel("Console:")
+        self.tab1.layout.addWidget(self.namelabel_game,1 ,0)
+        self.tab1.layout.addWidget(self.nameField_game,1 ,1)
+        self.tab1.layout.addWidget(self.jahrlabel_game,2 ,0)
+        self.tab1.layout.addWidget(self.jahrField_game,2 ,1)
+        self.tab1.layout.addWidget(self.gernelabel_game,3 ,0)
+        self.tab1.layout.addWidget(self.gerneField_game,3 ,1)
+        self.tab1.layout.addWidget(self.consolelabel_game,4 ,0)
+        self.tab1.layout.addWidget(self.consoleField_game,4 ,1)
+        self.tab1.layout.addWidget(self.insertButton,5 ,0)
         self.tab1.setLayout(self.tab1.layout)
 
         #Create 2 Tab
-        self.tab2.layout = QVBoxLayout(self)
+        self.tab2.layout = QGridLayout(self)
         self.deleteButton = QPushButton("Delete")
         self.idFelddel_game = QLineEdit(self)
+        self.iddellabel_gane = QLabel("Id:")
         self.nameFielddel_game = QLineEdit(self)
-        self.tab2.layout.addWidget(self.idFelddel_game)
-        self.tab2.layout.addWidget(self.nameFielddel_game)
-        self.tab2.layout.addWidget(self.deleteButton)
+        self.namelabeldel_game = QLabel("Name:")
+        self.tab2.layout.addWidget(self.iddellabel_gane,1 ,0)
+        self.tab2.layout.addWidget(self.idFelddel_game,1 ,1)
+        self.tab2.layout.addWidget(self.nameFielddel_game,2 ,0)
+        self.tab2.layout.addWidget(self.nameFielddel_game,2 ,1)
+        self.tab2.layout.addWidget(self.deleteButton,3 ,0)
         self.tab2.setLayout(self.tab2.layout)
 
         #add tabs to Widget

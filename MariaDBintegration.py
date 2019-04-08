@@ -12,9 +12,9 @@ class MariaDBintegration:
         #MariaDB configuration
         db = mariadb.connect(user='java', password='123',database='library')
         cursor = db.cursor()
-
+        sql="SELECT * FROM games"
         try:
-            cursor.execute("SELECT * FROM games")
+            cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
         for id, name, jahr, gerne, console in cursor:
@@ -28,15 +28,15 @@ class MariaDBintegration:
         #MariaDB configuration
         db = mariadb.connect(user='java', password='123',database='library')
         cursor = db.cursor()
-        sql = 'INSERT INTO games (name, jahr, gerne, console) VALUES ("{}", "{}", "{}", "{}")'.format(name, jahr, gerne, console)
-        print(sql)
+        sql = "INSERT INTO games (name, jahr, gerne, console) VALUES ('{}', '{}', '{}', '{}')".format(name, jahr, gerne, console)
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
 
 
-
+        db.commit()
+        db.close()
 
     #remove entry from table games
     def Delete_games(id, name):
@@ -45,10 +45,13 @@ class MariaDBintegration:
         cursor = db.cursor()
         print(id)
         print(name)
-        sql = 'DELETE FROM games WHERE id={} AND name="{}"'.format(id, name)
+        sql = "DELETE FROM games WHERE id='{}' AND name='{}'".format(id, name)
         print(sql)
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
         print("Succesfull delete")
+
+        db.commit()
+        db.close()
