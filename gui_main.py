@@ -27,9 +27,9 @@ class MyTableWidget(QWidget):
         self.layout = QVBoxLayout(self)
 
         #initialize tabs
-        self.tabs = QtWidget()
+        self.tabs = QTabWidget()
         self.tab1 = QWidget()
-        self.tab2 = QtWidget()
+        self.tab2 = QWidget()
         self.tabs.resize(1000,200)
 
         #add tabs
@@ -38,9 +38,9 @@ class MyTableWidget(QWidget):
 
         #Create 1 Tab
         self.tab1.layout = QVBoxLayout(self)
-        self.pushButton1 = QPushButton("Insert")
-        self.tab1.layout.addWidget(self.pushButton1)
-        self.tab1.setlayout(self.tab1.layout)
+        self.insertButton = QPushButton("Insert")
+        self.tab1.layout.addWidget(self.insertButton)
+        self.tab1.setLayout(self.tab1.layout)
 
         #add tabs to Widget
         self.layout.addWidget(self.tabs)
