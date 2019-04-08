@@ -3,13 +3,14 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAc
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 
+
 class GUI(QMainWindow):
 #GUI for MariaDBintegration
     def __init__(self):
         super().__init__()
         self.title = 'MariaDB (games)'
-        self.left = 0
-        self.top = 0
+        self.left = 200
+        self.top = 200
         self.width = 1000
         self.hight = 200
         self.setWindowTitle(self.title)
@@ -42,13 +43,19 @@ class MyTableWidget(QWidget):
         self.tab1.layout.addWidget(self.insertButton)
         self.tab1.setLayout(self.tab1.layout)
 
+        #Create 2 Tab
+        self.tab2.layout = QVBoxLayout(self)
+        self.deleteButton = QPushButton("Delete")
+        self.tab2.layout.addWidget(self.deleteButton)
+        self.tab2.layout.addLayout(self.tab2.layout)
+
         #add tabs to Widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 
     @pyqtSlot()
     def on_click(self):
-        #print("\n")
+        print("\n")
         for currentQTableWidgetItem in self.tableWidget.selectedItems():
             print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
 
