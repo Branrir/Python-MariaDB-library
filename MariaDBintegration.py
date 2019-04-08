@@ -28,21 +28,27 @@ class MariaDBintegration:
         #MariaDB configuration
         db = mariadb.connect(user='java', password='123',database='library')
         cursor = db.cursor()
-
+        sql = 'INSERT INTO games (name, jahr, gerne, console) VALUES ("{}", "{}", "{}", "{}")'.format(name, jahr, gerne, console)
+        print(sql)
         try:
-            cursor.execute("INSERT INTO games (name, jahr, gerne, console) VALUES ({}, {}, {},{})".format(name, jahr, gerne, console))
+            cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
-        print("Succesfull insert")
+
+
+
 
     #remove entry from table games
     def Delete_games(id, name):
         #MariaDB configuration
         db = mariadb.connect(user='java', password='123',database='library')
         cursor = db.cursor()
-
+        print(id)
+        print(name)
+        sql = 'DELETE FROM games WHERE id={} AND name="{}"'.format(id, name)
+        print(sql)
         try:
-            cursor.execute("REMOVE FROM games WHERE id={} AND name={}".format(id, name))
+            cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
         print("Succesfull delete")

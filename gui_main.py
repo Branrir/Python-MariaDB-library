@@ -1,7 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget,QVBoxLayout
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget,QVBoxLayout,QLineEdit,QMessageBox
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
+from MariaDBintegration import *
 
 
 class GUI(QMainWindow):
@@ -40,24 +41,53 @@ class MyTableWidget(QWidget):
         #Create 1 Tab
         self.tab1.layout = QVBoxLayout(self)
         self.insertButton = QPushButton("Insert")
+        self.nameField_game = QLineEdit(self)
+        self.jahrField_game = QLineEdit(self)
+        self.gerneField_game = QLineEdit(self)
+        self.consoleField_game = QLineEdit(self)
+        self.tab1.layout.addWidget(self.nameField_game)
+        self.tab1.layout.addWidget(self.jahrField_game)
+        self.tab1.layout.addWidget(self.gerneField_game)
+        self.tab1.layout.addWidget(self.consoleField_game)
+        self.tab1.layout.addWidget(self.insertButton)
+        self.tab1.layout.addWidget(self.nameField_game)
+        self.tab1.layout.addWidget(self.jahrField_game)
+        self.tab1.layout.addWidget(self.gerneField_game)
+        self.tab1.layout.addWidget(self.consoleField_game)
         self.tab1.layout.addWidget(self.insertButton)
         self.tab1.setLayout(self.tab1.layout)
 
         #Create 2 Tab
         self.tab2.layout = QVBoxLayout(self)
         self.deleteButton = QPushButton("Delete")
+        self.idFelddel_game = QLineEdit(self)
+        self.nameFielddel_game = QLineEdit(self)
+        self.tab2.layout.addWidget(self.idFelddel_game)
+        self.tab2.layout.addWidget(self.nameFielddel_game)
         self.tab2.layout.addWidget(self.deleteButton)
-        self.tab2.layout.addLayout(self.tab2.layout)
+        self.tab2.setLayout(self.tab2.layout)
 
         #add tabs to Widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 
+        #buttons clicked
+        self.insertButton.clicked.connect(self.insertclick)
+        self.deleteButton.clicked.connect(self.deleteclick)
+
     @pyqtSlot()
-    def on_click(self):
-        print("\n")
-        for currentQTableWidgetItem in self.tableWidget.selectedItems():
-            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
+    def insertclick(self):
+        name = self.nameField_game.text()
+        jahr = self.jahrField_game.text()
+        gerne = self.gerneField_game.text()
+        console = self.consoleField_game.text()
+        MariaDBintegration.Insert_games(name, jahr, gerne, console)
+        #QMessageBox(self,'Messege - test',"Insert Succesfull",QMessageBox.Ok)
+    @pyqtSlot()
+    def deleteclick(self):
+        id = self.idFelddel_game.text()
+        name = self.nameFielddel_game.text()
+        MariaDBintegration.Delete_games(id, name)
 
 def main():
     app = QApplication(sys.argv)
