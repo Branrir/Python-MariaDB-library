@@ -22,7 +22,7 @@ class GUI(QMainWindow):
 
 class MyTableWidget(QWidget):
 
-    def __init__(self):
+    def __init__(self, parent):
         super(QWidget, self).__init__(parent)
         self.layout = QVBoxLayout(self)
 
@@ -46,14 +46,16 @@ class MyTableWidget(QWidget):
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 
-        @pyqtSlot()
-        def on_click(self):
-            #print("\n")
-            for currentQTableWidgetItem in self.tableWidget.selectedItems():
-                print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
+    @pyqtSlot()
+    def on_click(self):
+        #print("\n")
+        for currentQTableWidgetItem in self.tableWidget.selectedItems():
+            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
 
+def main():
+    app = QApplication(sys.argv)
+    ex = GUI()
+    sys.exit(app.exec_())
 
-        if __name__ == '__main__':
-            app = QApplication(sys.argv)
-            ex = GUI()
-            sys.exit(app.exec_())
+if __name__ == '__main__':
+    main()
