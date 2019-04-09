@@ -42,7 +42,7 @@ class MariaDBintegration:
             errortext = "Error: {}".format(error)
 
         if not errortext:
-        print("Succesfull insert")
+            print("Succesfull insert")
 
         db.commit()
         db.close()
