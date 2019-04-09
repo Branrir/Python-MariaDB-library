@@ -21,9 +21,12 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
-        for id, name, jahr, gerne, console in cursor:
-            tempgames +="\n" + "ID: {},    Name: {},   Jahr: {},   Gerne: {},   Console: {} ".format(id, name, jahr, gerne, console)
-        return tempgames
+            errortext = "Error: {}".format(error)
+            return errortext
+        finally:
+            for id, name, jahr, gerne, console in cursor:
+                tempgames +="\n" + "ID: {},    Name: {},   Jahr: {},   Gerne: {},   Console: {} ".format(id, name, jahr, gerne, console)
+            return tempgames
         #Close connection"""
         db.close()
 
@@ -37,7 +40,9 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
-
+            errortext = "Error: {}".format(error)
+        finally:
+            print("Succesfull insert")
 
         db.commit()
         db.close()
@@ -55,7 +60,9 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
-        print("Succesfull delete")
+            errortext = "Error: {}".format(error)
+        finally:
+            print("Succesfull delete")
 
         db.commit()
         db.close()
@@ -71,6 +78,10 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+        finally:
+            print("Succesfull insert")
+
 
 
         db.commit()
@@ -89,7 +100,9 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
-        print("Succesfull delete")
+            errortext = "Error: {}".format(error)
+        finally:
+            print("Succesfull delete")
 
         db.commit()
         db.close()
@@ -105,9 +118,11 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
-        for id, name, author, jahr, volume, lang in cursor:
-            temp += "\n" + "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang)
-
-        return temp
+            errortext = "Error: {}".format(error)
+            return errortext
+        finally:
+            for id, name, author, jahr, volume, lang in cursor:
+                temp += "\n" + "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang)
+            return temp
         #Close connection"""
         db.close()
