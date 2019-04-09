@@ -49,6 +49,7 @@ class MyTableWidget(QWidget):
 
         #Create 1 Tab
         self.tab1.layout = QGridLayout(self)
+        self.labeltab1 = QLabel('Insert values for Game entry and click "Insert"')
         self.insertButton = QPushButton("Insert")
         self.nameField_game = QLineEdit(self)
         self.namelabel_game = QLabel("Name:")
@@ -58,6 +59,7 @@ class MyTableWidget(QWidget):
         self.gernelabel_game = QLabel("Gerne:")
         self.consoleField_game = QLineEdit(self)
         self.consolelabel_game = QLabel("Console:")
+        self.tab1.layout.addWidget(self.labeltab1,5 ,1 )
         self.tab1.layout.addWidget(self.namelabel_game,1 ,0)
         self.tab1.layout.addWidget(self.nameField_game,1 ,1)
         self.tab1.layout.addWidget(self.jahrlabel_game,2 ,0)
@@ -78,7 +80,7 @@ class MyTableWidget(QWidget):
         self.namelabeldel_game = QLabel("Name:")
         self.tab2.layout.addWidget(self.iddellabel_gane,1 ,0)
         self.tab2.layout.addWidget(self.idFelddel_game,1 ,1)
-        self.tab2.layout.addWidget(self.namelabel_game,2 ,0)
+        self.tab2.layout.addWidget(self.namelabeldel_game,2 ,0)
         self.tab2.layout.addWidget(self.nameFielddel_game,2 ,1)
         self.tab2.layout.addWidget(self.deleteButton,3 ,0)
         self.tab2.setLayout(self.tab2.layout)
@@ -132,6 +134,15 @@ class MyTableWidget(QWidget):
         self.tab5.layout.addWidget(self.deleteButton_book,3 ,0)
         self.tab5.setLayout(self.tab5.layout)
 
+        #create tab 6
+        self.tab6.layout = QGridLayout(self)
+        self.returnbooks = QPlainTextEdit(self)
+        self.returnbutton_books = QPushButton("Reload")
+        self.tab6.layout.addWidget(self.returnbooks)
+        self.tab6.layout.addWidget(self.returnbutton_books)
+        self.tab6.setLayout(self.tab6.layout)
+
+
         #add tabs to Widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
@@ -142,6 +153,7 @@ class MyTableWidget(QWidget):
         self.insertButton_books.clicked.connect(self.insertclick_books)
         self.deleteButton_book.clicked.connect(self.deleteclick_books)
         self.returnbutton_games.clicked.connect(self.reloadtable_games)
+        self.returnbutton_books.clicked.connect(self.reloadtable_books)
 
     @pyqtSlot()
     def insertclick(self):
@@ -158,14 +170,25 @@ class MyTableWidget(QWidget):
         MariaDBintegration.Delete_games(id, name)
     @pyqtSlot()
     def insertclick_books(self):
-        MariaDBintegration.Return_books()
+        name = nameField_book.text()
+        author = authorField_book.text()
+        jahr = jahrField_book.text()
+        volume = volumeField_book.text()
+        lang = langField_book.text()
+        MariaDBintegration.Insert_books(name, author, jahr, volume, lang)
     @pyqtSlot()
     def deleteclick_books(self):
-        MariaDBintegration.Return_books()
+        id = idFelddel_book.text()
+        name = nameField_book.text()
+        MariaDBintegration.Delete_books(id, name)
     @pyqtSlot()
     def reloadtable_games(self):
         tempreturn = MariaDBintegration.Return_games()
         self.returngames.setPlainText(tempreturn)
+    @pyqtSlot()
+    def reloadtable_books(self):
+        tempreturn = MariaDBintegration.Return_books()
+        self.returnbooks.setPlainText(tempreturn)
 
 
 def main():

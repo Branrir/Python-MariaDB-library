@@ -13,6 +13,7 @@ class MariaDBintegration:
         db = mariadb.connect(user='java', password='123',database='library')
         cursor = db.cursor()
         sql="SELECT * FROM games"
+        
         tempgames = ""
         try:
             cursor.execute(sql)
@@ -103,7 +104,7 @@ class MariaDBintegration:
         except mariadb.Error as error:
             print("Error: {}".format(error))
         for id, name, author, jahr, volume, lang in cursor:
-            temp += "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang)
+            temp += "\n" + "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang)
 
         return temp
         #Close connection"""
