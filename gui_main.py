@@ -176,16 +176,16 @@ class MyTableWidget(QWidget):
         MariaDBintegration.Delete_games(id, name)
     @pyqtSlot()
     def insertclick_books(self):
-        name = nameField_book.text()
-        author = authorField_book.text()
-        jahr = jahrField_book.text()
-        volume = volumeField_book.text()
-        lang = langField_book.text()
+        name = self.nameField_book.text()
+        author = self.authorField_book.text()
+        jahr = self.jahrField_book.text()
+        volume = self.volumeField_book.text()
+        lang = self.langField_book.text()
         MariaDBintegration.Insert_books(name, author, jahr, volume, lang)
     @pyqtSlot()
     def deleteclick_books(self):
-        id = idFelddel_book.text()
-        name = nameField_book.text()
+        id = self.idFelddel_book.text()
+        name = self.nameField_book.text()
         MariaDBintegration.Delete_books(id, name)
     @pyqtSlot()
     def reloadtable_games(self):
