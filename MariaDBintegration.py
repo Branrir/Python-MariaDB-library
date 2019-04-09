@@ -13,13 +13,14 @@ class MariaDBintegration:
         db = mariadb.connect(user='java', password='123',database='library')
         cursor = db.cursor()
         sql="SELECT * FROM games"
+        tempgames = ""
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
         for id, name, jahr, gerne, console in cursor:
-            print("ID: {}, Name: {}, Jahr: {}, Gerne: {}, Console: {}".format(id, name, jahr, gerne, console))
-
+            tempgames +="\n" + "ID: {},    Name: {},   Jahr: {},   Gerne: {},   Console: {} ".format(id, name, jahr, gerne, console)
+        return tempgames
         #Close connection"""
         db.close()
 
@@ -96,12 +97,14 @@ class MariaDBintegration:
         db = mariadb.connect(user='java', password='123',database='library')
         cursor = db.cursor()
         sql="SELECT * FROM books"
+        temp = ""
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
         for id, name, author, jahr, volume, lang in cursor:
-            print("ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang))
+            temp += "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang)
 
+        return temp
         #Close connection"""
         db.close()

@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QApplication, QPushButton, QWidget, QAction, QFormLayout, QGroupBox, QLabel, QTabWidget,QVBoxLayout,QLineEdit,QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QApplication, QPushButton, QWidget, QAction, QFormLayout, QGroupBox, QLabel, QTabWidget,QVBoxLayout,QLineEdit,QMessageBox, QPlainTextEdit
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 from MariaDBintegration import *
@@ -84,6 +84,13 @@ class MyTableWidget(QWidget):
         self.tab2.setLayout(self.tab2.layout)
 
         #create tab 3
+        self.tab3.layout = QGridLayout(self)
+        self.returngames = QPlainTextEdit()
+        self.returnbutton_games = QPushButton("Reload")
+        self.tab3.layout.addWidget(self.returngames)
+        self.tab3.layout.addWidget(self.returnbutton_games)
+        self.tab3.setLayout(self.tab3.layout)
+
 
         #create tab 4
         self.tab4.layout = QGridLayout(self)
@@ -132,6 +139,9 @@ class MyTableWidget(QWidget):
         #buttons clicked
         self.insertButton.clicked.connect(self.insertclick)
         self.deleteButton.clicked.connect(self.deleteclick)
+        self.insertButton_books.clicked.connect(self.insertclick_books)
+        self.deleteButton_book.clicked.connect(self.deleteclick_books)
+        self.returnbutton_games.clicked.connect(self.reloadtable_games)
 
     @pyqtSlot()
     def insertclick(self):
@@ -152,6 +162,10 @@ class MyTableWidget(QWidget):
     @pyqtSlot()
     def deleteclick_books(self):
         MariaDBintegration.Return_books()
+    @pyqtSlot()
+    def reloadtable_games(self):
+        tempreturn = MariaDBintegration.Return_games()
+        self.returngames.setPlainText(tempreturn)
 
 
 def main():
