@@ -6,7 +6,7 @@ from mysql.connector import errorcode
 from settings import *
 
 class MariaDBintegration:
-#MariaDB integration
+#MariaDB integration (Input, Delete, Return)
 
     #select from table
     def Return_games():
