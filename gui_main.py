@@ -135,7 +135,7 @@ class MyTableWidget(QWidget):
         self.tab5.layout.addWidget(self.labeltab5,3 ,1)
         self.tab5.layout.addWidget(self.iddellabel_book,1 ,0)
         self.tab5.layout.addWidget(self.idFelddel_book,1 ,1)
-        self.tab5.layout.addWidget(self.namelabel_book,2 ,0)
+        self.tab5.layout.addWidget(self.namelabeldel_book,2 ,0)
         self.tab5.layout.addWidget(self.nameFielddel_book,2 ,1)
         self.tab5.layout.addWidget(self.deleteButton_book,3 ,0)
         self.tab5.setLayout(self.tab5.layout)
