@@ -21,6 +21,8 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            return errortext
         for id, name, jahr, gerne, console in cursor:
             tempgames +="\n" + "ID: {},    Name: {},   Jahr: {},   Gerne: {},   Console: {} ".format(id, name, jahr, gerne, console)
         return tempgames
@@ -37,8 +39,10 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            return errortext
 
-
+        print("Succesfull insert")
         db.commit()
         db.close()
 
@@ -55,6 +59,9 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            return errortext
+
         print("Succesfull delete")
 
         db.commit()
@@ -71,6 +78,10 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            return errortext
+
+        print("Succesfull insert")
 
 
         db.commit()
@@ -89,6 +100,9 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            return errortext
+
         print("Succesfull delete")
 
         db.commit()
@@ -105,6 +119,9 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            return errortext
+
         for id, name, author, jahr, volume, lang in cursor:
             temp += "\n" + "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang)
 
