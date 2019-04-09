@@ -9,7 +9,7 @@ class GUI(QMainWindow):
 #GUI for MariaDBintegration
     def __init__(self):
         super().__init__()
-        self.title = 'MariaDB (games)'
+        self.title = 'MariaDB library'
         self.left = 200
         self.top = 200
         self.width = 1000
