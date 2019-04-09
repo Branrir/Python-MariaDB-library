@@ -62,7 +62,7 @@ class MariaDBintegration:
             print("Error: {}".format(error))
             errortext = "Error: {}".format(error)
         finally:
-        print("Succesfull delete")
+            print("Succesfull delete")
 
         db.commit()
         db.close()
