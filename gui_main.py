@@ -36,7 +36,7 @@ class MyTableWidget(QWidget):
         self.tab4 = QWidget()
         self.tab5 = QWidget()
         self.tab6 = QWidget()
-        self.tabs.resize(1000,200)
+        self.tabs.resize(1000,500)
 
         #add tabs
         self.tabs.addTab(self.tab1, "Insert Game")
@@ -83,6 +83,48 @@ class MyTableWidget(QWidget):
         self.tab2.layout.addWidget(self.deleteButton,3 ,0)
         self.tab2.setLayout(self.tab2.layout)
 
+        #create tab 3
+
+        #create tab 4
+        self.tab4.layout = QGridLayout(self)
+        self.insertButton_books = QPushButton("Insert")
+        self.nameField_book = QLineEdit(self)
+        self.namelabel_book = QLabel("Name:")
+        self.authorField_book = QLineEdit(self)
+        self.authorlabel_book = QLabel("Author:")
+        self.jahrField_book = QLineEdit(self)
+        self.jahrlabel_book = QLabel("Jahr:")
+        self.volumeField_book = QLineEdit(self)
+        self.volumelabel_book = QLabel("Volume:")
+        self.langField_book = QLineEdit(self)
+        self.langlabel_book = QLabel("Language:")
+        self.tab4.layout.addWidget(self.namelabel_book,1 ,0)
+        self.tab4.layout.addWidget(self.nameField_book,1 ,1)
+        self.tab4.layout.addWidget(self.authorlabel_book,2 ,0)
+        self.tab4.layout.addWidget(self.authorField_book,2 ,1)
+        self.tab4.layout.addWidget(self.jahrlabel_book,3 ,0)
+        self.tab4.layout.addWidget(self.jahrField_book,3 ,1)
+        self.tab4.layout.addWidget(self.volumelabel_book,4 ,0)
+        self.tab4.layout.addWidget(self.volumeField_book,4 ,1)
+        self.tab4.layout.addWidget(self.langlabel_book,5 ,0)
+        self.tab4.layout.addWidget(self.langField_book,5 ,1)
+        self.tab4.layout.addWidget(self.insertButton_books,6 ,0)
+        self.tab4.setLayout(self.tab4.layout)
+
+        #create tab 5
+        self.tab5.layout = QGridLayout(self)
+        self.deleteButton_book = QPushButton("Delete")
+        self.idFelddel_book = QLineEdit(self)
+        self.iddellabel_book = QLabel("Id:")
+        self.nameFielddel_book = QLineEdit(self)
+        self.namelabeldel_book = QLabel("Name:")
+        self.tab5.layout.addWidget(self.iddellabel_book,1 ,0)
+        self.tab5.layout.addWidget(self.idFelddel_book,1 ,1)
+        self.tab5.layout.addWidget(self.namelabel_book,2 ,0)
+        self.tab5.layout.addWidget(self.nameFielddel_book,2 ,1)
+        self.tab5.layout.addWidget(self.deleteButton_book,3 ,0)
+        self.tab5.setLayout(self.tab5.layout)
+
         #add tabs to Widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
@@ -104,6 +146,13 @@ class MyTableWidget(QWidget):
         id = self.idFelddel_game.text()
         name = self.nameFielddel_game.text()
         MariaDBintegration.Delete_games(id, name)
+    @pyqtSlot()
+    def insertclick_books(self):
+        MariaDBintegration.Return_books()
+    @pyqtSlot()
+    def deleteclick_books(self):
+        MariaDBintegration.Return_books()
+
 
 def main():
     app = QApplication(sys.argv)

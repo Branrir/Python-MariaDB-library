@@ -55,3 +55,53 @@ class MariaDBintegration:
 
         db.commit()
         db.close()
+
+
+    #insert entry in table books
+    def Insert_books(name, author, jahr, volume, lang):
+        #MariaDB configuration
+        db = mariadb.connect(user='java', password='123',database='library')
+        cursor = db.cursor()
+        sql = "INSERT INTO books (name, author, jahr, volume, lang) VALUES ('{}', '{}', '{}', '{}', '{}')".format(name, author, jahr, volume, lang)
+        try:
+            cursor.execute(sql)
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
+
+
+        db.commit()
+        db.close()
+
+    #remove entry from table books
+    def Delete_books(id, name):
+        #MariaDB configuration
+        db = mariadb.connect(user='java', password='123',database='library')
+        cursor = db.cursor()
+        print(id)
+        print(name)
+        sql = "DELETE FROM books WHERE id='{}' AND name='{}'".format(id, name)
+        print(sql)
+        try:
+            cursor.execute(sql)
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
+        print("Succesfull delete")
+
+        db.commit()
+        db.close()
+
+    #select from books
+    def Return_books():
+        #MariaDB configuration
+        db = mariadb.connect(user='java', password='123',database='library')
+        cursor = db.cursor()
+        sql="SELECT * FROM books"
+        try:
+            cursor.execute(sql)
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
+        for id, name, author, jahr, volume, lang in cursor:
+            print("ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name,author , jahr, volume, lang))
+
+        #Close connection"""
+        db.close()
