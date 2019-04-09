@@ -32,11 +32,20 @@ class MyTableWidget(QWidget):
         self.tabs = QTabWidget()
         self.tab1 = QWidget()
         self.tab2 = QWidget()
+        self.tab3 = QWidget()
+        self.tab4 = QWidget()
+        self.tab5 = QWidget()
+        self.tab6 = QWidget()
         self.tabs.resize(1000,200)
 
         #add tabs
         self.tabs.addTab(self.tab1, "Insert Game")
         self.tabs.addTab(self.tab2, "Delete Game")
+        self.tabs.addTab(self.tab3, "Show games table")
+        self.tabs.addTab(self.tab4, "Insert Book")
+        self.tabs.addTab(self.tab5, "Delete Book")
+        self.tabs.addTab(self.tab6, "Show books table")
+
 
         #Create 1 Tab
         self.tab1.layout = QGridLayout(self)
@@ -69,7 +78,7 @@ class MyTableWidget(QWidget):
         self.namelabeldel_game = QLabel("Name:")
         self.tab2.layout.addWidget(self.iddellabel_gane,1 ,0)
         self.tab2.layout.addWidget(self.idFelddel_game,1 ,1)
-        self.tab2.layout.addWidget(self.nameFielddel_game,2 ,0)
+        self.tab2.layout.addWidget(self.namelabel_game,2 ,0)
         self.tab2.layout.addWidget(self.nameFielddel_game,2 ,1)
         self.tab2.layout.addWidget(self.deleteButton,3 ,0)
         self.tab2.setLayout(self.tab2.layout)
