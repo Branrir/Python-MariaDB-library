@@ -41,9 +41,9 @@ class MariaDBintegration:
             print("Error: {}".format(error))
             errortext = "Error: {}".format(error)
 
-        if errortext = null:
-        print("Succesfull insert")
         
+        print("Succesfull insert")
+
         db.commit()
         db.close()
 
