@@ -3,6 +3,7 @@ import sys, os
 import mysql.connector as mariadb
 from mysql.connector import Error
 from mysql.connector import errorcode
+from settings import *
 
 class MariaDBintegration:
 #MariaDB integration
@@ -10,10 +11,10 @@ class MariaDBintegration:
     #select from table
     def Return_games():
         #MariaDB configuration
-        db = mariadb.connect(user='java', password='123',database='library')
+        db = mariadb.connect(user= setting.user, password= settings.password,database=setting.database)
         cursor = db.cursor()
         sql="SELECT * FROM games"
-        
+
         tempgames = ""
         try:
             cursor.execute(sql)
@@ -28,7 +29,7 @@ class MariaDBintegration:
     #insert entry in table games
     def Insert_games(name, jahr, gerne, console):
         #MariaDB configuration
-        db = mariadb.connect(user='java', password='123',database='library')
+        db = mariadb.connect(user= setting.user, password= settings.password,database=setting.database)
         cursor = db.cursor()
         sql = "INSERT INTO games (name, jahr, gerne, console) VALUES ('{}', '{}', '{}', '{}')".format(name, jahr, gerne, console)
         try:
@@ -43,7 +44,7 @@ class MariaDBintegration:
     #remove entry from table games
     def Delete_games(id, name):
         #MariaDB configuration
-        db = mariadb.connect(user='java', password='123',database='library')
+        db = mariadb.connect(user= setting.user, password= settings.password,database=setting.database)
         cursor = db.cursor()
         print(id)
         print(name)
@@ -62,7 +63,7 @@ class MariaDBintegration:
     #insert entry in table books
     def Insert_books(name, author, jahr, volume, lang):
         #MariaDB configuration
-        db = mariadb.connect(user='java', password='123',database='library')
+        db = mariadb.connect(user= setting.user, password= settings.password,database=setting.database)
         cursor = db.cursor()
         sql = "INSERT INTO books (name, author, jahr, volume, lang) VALUES ('{}', '{}', '{}', '{}', '{}')".format(name, author, jahr, volume, lang)
         try:
@@ -77,7 +78,7 @@ class MariaDBintegration:
     #remove entry from table books
     def Delete_books(id, name):
         #MariaDB configuration
-        db = mariadb.connect(user='java', password='123',database='library')
+        db = mariadb.connect(user= setting.user, password= settings.password,database=setting.database)
         cursor = db.cursor()
         print(id)
         print(name)
@@ -95,7 +96,7 @@ class MariaDBintegration:
     #select from books
     def Return_books():
         #MariaDB configuration
-        db = mariadb.connect(user='java', password='123',database='library')
+        db = mariadb.connect(user= setting.user, password= settings.password,database=setting.database)
         cursor = db.cursor()
         sql="SELECT * FROM books"
         temp = ""

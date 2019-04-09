@@ -73,11 +73,13 @@ class MyTableWidget(QWidget):
 
         #Create 2 Tab
         self.tab2.layout = QGridLayout(self)
+        self.labeltab2 = QLabel('Insert values for Game delete and click "Delete"')
         self.deleteButton = QPushButton("Delete")
         self.idFelddel_game = QLineEdit(self)
         self.iddellabel_gane = QLabel("Id:")
         self.nameFielddel_game = QLineEdit(self)
         self.namelabeldel_game = QLabel("Name:")
+        self.tab2.layout.addWidget(self.labeltab2,3 ,1)
         self.tab2.layout.addWidget(self.iddellabel_gane,1 ,0)
         self.tab2.layout.addWidget(self.idFelddel_game,1 ,1)
         self.tab2.layout.addWidget(self.namelabeldel_game,2 ,0)
@@ -96,6 +98,7 @@ class MyTableWidget(QWidget):
 
         #create tab 4
         self.tab4.layout = QGridLayout(self)
+        self.labeltab4 = QLabel('Insert values for Book entry and click "Insert"')
         self.insertButton_books = QPushButton("Insert")
         self.nameField_book = QLineEdit(self)
         self.namelabel_book = QLabel("Name:")
@@ -107,6 +110,7 @@ class MyTableWidget(QWidget):
         self.volumelabel_book = QLabel("Volume:")
         self.langField_book = QLineEdit(self)
         self.langlabel_book = QLabel("Language:")
+        self.tab4.layout.addWidget(self.labeltab4,6 , 1)
         self.tab4.layout.addWidget(self.namelabel_book,1 ,0)
         self.tab4.layout.addWidget(self.nameField_book,1 ,1)
         self.tab4.layout.addWidget(self.authorlabel_book,2 ,0)
@@ -122,11 +126,13 @@ class MyTableWidget(QWidget):
 
         #create tab 5
         self.tab5.layout = QGridLayout(self)
+        self.labeltab5 = QLabel('Insert values for Book delete and click "Delete"')
         self.deleteButton_book = QPushButton("Delete")
         self.idFelddel_book = QLineEdit(self)
         self.iddellabel_book = QLabel("Id:")
         self.nameFielddel_book = QLineEdit(self)
         self.namelabeldel_book = QLabel("Name:")
+        self.tab5.layout.addWidget(self.labeltab5,3 ,1)
         self.tab5.layout.addWidget(self.iddellabel_book,1 ,0)
         self.tab5.layout.addWidget(self.idFelddel_book,1 ,1)
         self.tab5.layout.addWidget(self.namelabel_book,2 ,0)
