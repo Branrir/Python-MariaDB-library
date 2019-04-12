@@ -158,6 +158,7 @@ class MyTableWidget(QWidget):
         self.returnbutton_games.clicked.connect(self.reloadtable_games)
         self.returnbutton_books.clicked.connect(self.reloadtable_books)
 
+    # method for push of insert game button
     @pyqtSlot()
     def insertclick(self):
         name = self.nameField_game.text()
@@ -167,12 +168,14 @@ class MyTableWidget(QWidget):
         MariaDBintegration.Insert_games(name, jahr, gerne, console)
         QMessageBox(QMessageBox.NoIcon, "test", "test", QMessageBox.Ok)
 
+    # method for push of delete game button
     @pyqtSlot()
     def deleteclick(self):
         id = self.idFelddel_game.text()
         name = self.nameFielddel_game.text()
         MariaDBintegration.Delete_games(id, name)
 
+    # method for push of insert book button
     @pyqtSlot()
     def insertclick_books(self):
         name = self.nameField_book.text()
@@ -182,17 +185,20 @@ class MyTableWidget(QWidget):
         lang = self.langField_book.text()
         MariaDBintegration.Insert_books(name, author, jahr, volume, lang)
 
+    # method for push of delete book button
     @pyqtSlot()
     def deleteclick_books(self):
         id = self.idFelddel_book.text()
         name = self.nameField_book.text()
         MariaDBintegration.Delete_books(id, name)
 
+    # method for reload games
     @pyqtSlot()
     def reloadtable_games(self):
         tempreturn = MariaDBintegration.Return_games()
         self.returngames.setPlainText(tempreturn)
 
+    # method for reload books
     @pyqtSlot()
     def reloadtable_books(self):
         tempreturn = MariaDBintegration.Return_books()
