@@ -102,9 +102,9 @@ class MariaDBintegration:
     # select from books
     def Return_books():
         # MariaDB configuration
-        db = mariadb.connect(host=host, user=user, password=password,database=database)
+        db = mariadb.connect(host=host, user=user, password=password, database=database)
         cursor = db.cursor()
-        sql="SELECT * FROM books"
+        sql = "SELECT * FROM books"
         temp = ""
         try:
             cursor.execute(sql)
@@ -114,7 +114,7 @@ class MariaDBintegration:
             return errortext
         finally:
             for id, name, author, jahr, volume, lang in cursor:
-                temp += "\n" + "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name, author , jahr, volume, lang)
+                temp += "\n" + "ID: {}, Name: {}, Author: {}, Jahr: {}, Volume: {}, Language: {}".format(id, name, author, jahr, volume, lang)
             return temp
         # Close connection"""
         db.close()
