@@ -165,7 +165,7 @@ class MyTableWidget(QWidget):
         gerne = self.gerneField_game.text()
         console = self.consoleField_game.text()
         MariaDBintegration.Insert_games(name, jahr, gerne, console)
-        # QMessageBox(self,'Messege - test',"Insert Succesfull",QMessageBox.Ok)
+        QMessageBox(QMessageBox.NoIcon, "test", "test", QMessageBox.Ok)
 
     @pyqtSlot()
     def deleteclick(self):
