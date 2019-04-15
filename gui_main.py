@@ -181,7 +181,7 @@ class MyTableWidget(QWidget):
         author = self.authorField_book.text()
         jahr = self.jahrField_book.text()
         volume = self.volumeField_book.text()
-        lang = self.langField_book.text
+        lang = self.langField_book.text()
         MariaDBintegration.Insert_books(name, author, jahr, volume, lang)
     # method for push of delete book button
     @pyqtSlot()
