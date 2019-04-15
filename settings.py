@@ -1,5 +1,5 @@
 ##Please input your credentials and database
-##Please note to check database collums and input thise inside a code
+##Please check database collums and correct them inside a code if necessary.
 
 
 host = 'localhost'
