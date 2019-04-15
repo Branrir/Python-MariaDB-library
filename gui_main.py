@@ -189,18 +189,14 @@ class MyTableWidget(QWidget):
         author = self.authorField_book.text()
         jahr = self.jahrField_book.text()
         volume = self.volumeField_book.text()
-        lang = self.langField_book.text()
+        lang = self.langField_book.text
         MariaDBintegration.Insert_books(name, author, jahr, volume, lang)
-        self.qmessage.setText("Succesfull insert")
-        self.qmessage.setStandardButtons(QMessageBox.Ok)
-        self.qmessage.exec_()
     # method for push of delete book button
     @pyqtSlot()
     def deleteclick_books(self):
         id = self.idFelddel_book.text()
         name = self.nameField_book.text()
-        MariaDBintegration.Delete_books(id, name)
-        self.qmessage.setText("Succesfull delete")
+        self.qmessage.setText(MariaDBintegration.Delete_books(id, name))
         self.qmessage.setStandardButtons(QMessageBox.Ok)
         self.qmessage.exec_()
     # method for reload games

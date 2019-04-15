@@ -4,6 +4,7 @@ import mysql.connector as mariadb
 from mysql.connector import Error
 from mysql.connector import errorcode
 from settings import host, user, password, database
+from PyQt5.QtWidgets import QMessageBox
 
 
 class MariaDBintegration:
@@ -74,12 +75,13 @@ class MariaDBintegration:
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
-            print("Error: {}".format(error))
+            qmessage = QMessageBox()
+            qmessage.setText("Error: {}".format(error))
         finally:
-            print("Succesfull insert")
-        db.commit()
-        db.close()
-
+            db.commit()
+            db.close()
+            qmessage.setStandardButtons(QMessageBox.Ok)
+            qmessage.exec_()
     # remove entry from table books
     def Delete_books(id, name):
         # MariaDB configuration
@@ -93,8 +95,12 @@ class MariaDBintegration:
             cursor.execute(sql)
         except mariadb.Error as error:
             print("Error: {}".format(error))
+            message = error
+            return message
         finally:
             print("Succesfull delete")
+            message = "Succesfull Delete"
+            return message
 
         db.commit()
         db.close()
