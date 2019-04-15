@@ -37,15 +37,22 @@ class MariaDBintegration:
         db = mariadb.connect(host=host, user=user, password=password, database=database)
         cursor = db.cursor()
         sql = "INSERT INTO games (name, jahr, gerne, console) VALUES ('{}', '{}', '{}', '{}')".format(name, jahr, gerne, console)
+        qmessage = QMessageBox()
+        qmessage.setStandardButtons(QMessageBox.Ok)
+        errortext = ""
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
-            print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            qmessage.setText(errortext)
         finally:
-            print("Succesfull insert")
+            if errortext == "":
+                qmessage.setText("Succesfull Insert")
 
         db.commit()
         db.close()
+
+        qmessage.exec_()
 
     # remove entry from table games
     def Delete_games(id, name):
@@ -55,16 +62,21 @@ class MariaDBintegration:
         print(id)
         print(name)
         sql = "DELETE FROM games WHERE id='{}' AND name='{}'".format(id, name)
-        print(sql)
+        qmessage = QMessageBox()
+        qmessage.setStandardButtons(QMessageBox.Ok)
+        errortext = ""
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
-            print("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            qmessage.setText(errortext)
         finally:
-            print("Succesfull delete")
-
+            if errortext == "":
+                qmessage.setText("Succesfull Delete")
         db.commit()
         db.close()
+
+        qmessage.exec_()
     # insert entry in table books
     def Insert_books(name, author, jahr, volume, lang):
 
@@ -72,16 +84,22 @@ class MariaDBintegration:
         db = mariadb.connect(host=host, user=user, password=password, database=database)
         cursor = db.cursor()
         sql = "INSERT INTO books (name, author, jahr, volume, lang) VALUES ('{}', '{}', '{}', '{}', '{}')".format(name, author, jahr, volume, lang)
+        qmessage = QMessageBox()
+        qmessage.setStandardButtons(QMessageBox.Ok)
+        errortext = ""
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
-            qmessage = QMessageBox()
-            qmessage.setText("Error: {}".format(error))
+            errortext = "Error: {}".format(error)
+            qmessage.setText(errortext)
         finally:
+            if errortext == "":
+                qmessage.setText("Succesfull Insert")
             db.commit()
             db.close()
-            qmessage.setStandardButtons(QMessageBox.Ok)
+
             qmessage.exec_()
+
     # remove entry from table books
     def Delete_books(id, name):
         # MariaDB configuration
@@ -91,19 +109,21 @@ class MariaDBintegration:
         print(name)
         sql = "DELETE FROM books WHERE id='{}' AND name='{}'".format(id, name)
         print(sql)
+        errortext = ""
+        qmessage = QMessageBox()
+        qmessage.setStandardButtons(QMessageBox.Ok)
         try:
             cursor.execute(sql)
         except mariadb.Error as error:
-            print("Error: {}".format(error))
-            message = error
-            return message
+            errortext = "Error: {}".format(error)
+            qmessage.setText(errortext)
         finally:
-            print("Succesfull delete")
-            message = "Succesfull Delete"
-            return message
-
+            if errortext == "":
+                qmessage.setText("Succesfull Delete")
         db.commit()
         db.close()
+
+        qmessage.exec_()
 
     # select from books
     def Return_books():

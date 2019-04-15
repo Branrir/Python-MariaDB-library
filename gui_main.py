@@ -187,7 +187,7 @@ class MyTableWidget(QWidget):
     @pyqtSlot()
     def deleteclick_books(self):
         id = self.idFelddel_book.text()
-        name = self.nameField_book.text()
+        name = self.nameFielddel_book.text()
         MariaDBintegration.Delete_books(id, name)
     # method for reload games
     @pyqtSlot()
