@@ -150,9 +150,6 @@ class MyTableWidget(QWidget):
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
 
-        # QMessageBox
-        self.qmessage = QMessageBox(self)
-
         # buttons clicked
         self.insertButton.clicked.connect(self.insertclick)
         self.deleteButton.clicked.connect(self.deleteclick)
@@ -169,18 +166,13 @@ class MyTableWidget(QWidget):
         gerne = self.gerneField_game.text()
         console = self.consoleField_game.text()
         MariaDBintegration.Insert_games(name, jahr, gerne, console)
-        self.qmessage.setText("Succesfull insert")
-        self.qmessage.setStandardButtons(QMessageBox.Ok)
-        self.qmessage.exec_()
     # method for push of delete game button
     @pyqtSlot()
     def deleteclick(self):
         id = self.idFelddel_game.text()
         name = self.nameFielddel_game.text()
         MariaDBintegration.Delete_games(id, name)
-        self.qmessage.setText("Succesfull delete")
-        self.qmessage.setStandardButtons(QMessageBox.Ok)
-        self.qmessage.exec_()
+
 
     # method for push of insert book button
     @pyqtSlot()
@@ -196,9 +188,7 @@ class MyTableWidget(QWidget):
     def deleteclick_books(self):
         id = self.idFelddel_book.text()
         name = self.nameField_book.text()
-        self.qmessage.setText(MariaDBintegration.Delete_books(id, name))
-        self.qmessage.setStandardButtons(QMessageBox.Ok)
-        self.qmessage.exec_()
+        MariaDBintegration.Delete_books(id, name)
     # method for reload games
     @pyqtSlot()
     def reloadtable_games(self):
